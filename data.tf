@@ -14,9 +14,9 @@ data "oci_core_vnic" "app_vnic" {
 }
 
 data "template_file" "master-boostrap" {
-  template = file("./boostrap.tpl")
+  template = file("./bootstrap.tpl")
 }
 
 data "template_file" "node-boostrap" {
-  template = file("./boostrap.tpl")
+  template = file("./bootstrap.tpl")
 }
