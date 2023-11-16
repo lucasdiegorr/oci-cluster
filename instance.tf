@@ -63,21 +63,38 @@ resource "tls_private_key" "compute_ssh_key" {
 
 resource "null_resource" "remote-exec" {
 
-  depends_on = [ oci_core_instance.master ]
+  depends_on = [
+    oci_core_instance.master,
+    oci_core_instance.node
+  ]
 
   provisioner "remote-exec" {
     connection {
       agent       = false
-      timeout     = "30m"
+      timeout     = "5m"
       host        = oci_core_instance.master.public_ip
       user        = "ubuntu"
       private_key = var.ssh_private_key
     }
 
     inline = [
-      "sudo groupadd docker",
       "sudo usermod -aG docker ubuntu",
       "newgrp docker",
+    ]
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      agent       = false
+      timeout     = "5m"
+      host        = oci_core_instance.node.public_ip
+      user        = "ubuntu"
+      private_key = var.ssh_private_key
+    }
+
+    inline = [
+      "sudo usermod -aG docker ubuntu",
+      "newgrp docker"
     ]
   }
 }
