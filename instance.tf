@@ -63,6 +63,8 @@ resource "tls_private_key" "compute_ssh_key" {
 
 resource "null_resource" "remote-exec" {
 
+  depends_on = [ oci_core_instance.master ]
+
   provisioner "remote-exec" {
     connection {
       agent       = false
@@ -73,6 +75,7 @@ resource "null_resource" "remote-exec" {
     }
 
     inline = [
+      "sudo groupadd docker",
       "sudo usermod -aG docker ubuntu",
       "newgrp docker",
     ]
