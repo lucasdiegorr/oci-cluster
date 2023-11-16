@@ -20,6 +20,5 @@ sudo apt-get update
 # Install Docker
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Post-install Docker
-sudo usermod -aG docker ubuntu
-newgrp docker
+# Open port to use Docker Swarm
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 2377 -j ACCEPT

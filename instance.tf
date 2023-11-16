@@ -60,3 +60,21 @@ resource "tls_private_key" "compute_ssh_key" {
   algorithm = "RSA"
   rsa_bits  = 2048
 }
+
+resource "null_resource" "remote-exec" {
+
+  provisioner "remote-exec" {
+    connection {
+      agent       = false
+      timeout     = "30m"
+      host        = oci_core_instance.master.public_ip
+      user        = "ubuntu"
+      private_key = var.ssh_private_key
+    }
+
+    inline = [
+      "sudo usermod -aG docker ubuntu",
+      "newgrp docker",
+    ]
+  }
+}
