@@ -34,7 +34,7 @@ resource "oci_load_balancer_backend_set" "oci_homelab_load_balancer_backend_set"
 resource "oci_load_balancer_backend" "oci_homelab_load_balancer_test_backend0" {
   #Required
   backendset_name  = oci_load_balancer_backend_set.oci_homelab_load_balancer_backend_set.name
-  ip_address       = oci_core_instance.master.public_ip
+  ip_address       = oci_core_instance.master.private_ip
   load_balancer_id = oci_load_balancer_load_balancer.oci_homelab_load_balancer.id
   port             = "80"
 }
@@ -42,14 +42,14 @@ resource "oci_load_balancer_backend" "oci_homelab_load_balancer_test_backend0" {
 resource "oci_load_balancer_backend" "oci_homelab_load_balancer_test_backend1" {
   #Required
   backendset_name  = oci_load_balancer_backend_set.oci_homelab_load_balancer_backend_set.name
-  ip_address       = oci_core_instance.node.public_ip
+  ip_address       = oci_core_instance.node.private_ip
   load_balancer_id = oci_load_balancer_load_balancer.oci_homelab_load_balancer.id
   port             = "80"
 }
 
 resource "oci_load_balancer_hostname" "oci_homelab_hostname1" {
   #Required
-  hostname         = "app.free.com"
+  hostname         = "devops-challenger.com"
   load_balancer_id = oci_load_balancer_load_balancer.oci_homelab_load_balancer.id
   name             = "hostname1"
 }
