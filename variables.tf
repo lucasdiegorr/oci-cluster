@@ -40,3 +40,6 @@ variable "instance_image_ocid" {
 variable "instance_ocpus" { default = 1 }
 
 variable "instance_shape_config_memory_in_gbs" { default = 1 }
+
+variable "token_k3s" {
+}

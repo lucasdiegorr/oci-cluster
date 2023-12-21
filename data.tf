@@ -14,9 +14,16 @@ data "oci_core_vnic" "app_vnic" {
 }
 
 data "template_file" "master-boostrap" {
-  template = file("./bootstrap.tpl")
+  template = file("./bootstrap-master.tpl")
+  vars = {
+    token_k3s = "${var.token_k3s}"
+  }
 }
 
 data "template_file" "node-boostrap" {
-  template = file("./bootstrap.tpl")
+  template = file("./bootstrap-node.tpl")
+  vars = {
+    master_private_ip = "${oci_core_instance.master.private_ip}"
+    token_k3s         = "${var.token_k3s}"
+  }
 }
