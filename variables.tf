@@ -33,8 +33,8 @@ variable "instance_shape" {
 
 variable "instance_image_ocid" {
   # See https://docs.oracle.com/en-us/iaas/images/
-  # Canonical-Ubuntu-22.04-2023.09.28-0
-  default = "ocid1.image.oc1.sa-saopaulo-1.aaaaaaaa4dcybjf44hvj46xwkroaz4wlk5kshtppxebyimba2y3fh5g6d5ia"
+  # Canonical-Ubuntu-22.04-Minimal-2023.09.28-0
+  default = "ocid1.image.oc1.sa-saopaulo-1.aaaaaaaaqd3z3wr3xy2usvhx6a64vxxy3z7yagc2s44satcro2x7tm4ckcaq"
 }
 
 variable "instance_ocpus" { default = 1 }
