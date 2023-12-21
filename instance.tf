@@ -23,7 +23,7 @@ resource "oci_core_instance" "master" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    user_data           = base64encode(data.template_file.master-boostrap.rendered)
+    #user_data           = base64encode(data.template_file.master-boostrap.rendered)
   }
 }
 
@@ -52,7 +52,7 @@ resource "oci_core_instance" "node" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    user_data           = base64encode(data.template_file.node-boostrap.rendered)
+    #user_data           = base64encode(data.template_file.node-boostrap.rendered)
   }
 }
 
